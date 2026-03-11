@@ -1,10 +1,10 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="BarberBoss.Exception/BarberBoss.Exception.csproj" Id="b2a2359a-82c3-48e2-a4f2-52073a850fce" />
     <Project Path="src/BarberBoss.Api/BarberBoss.Api.csproj" Id="79398f9c-1468-48c6-88e3-472394018c7a" />
     <Project Path="src/BarberBoss.Application/BarberBoss.Application.csproj" Id="c46f3cc1-c61a-41a5-b285-323c61f03354" />
     <Project Path="src/BarberBoss.Communication/BarberBoss.Communication.csproj" Id="8e418795-bdd2-4f4a-9578-048fee13bb40" />
     <Project Path="src/BarberBoss.Domain/BarberBoss.Domain.csproj" Id="0af2e357-ac12-402e-a819-f87cc4489fb8" />
+    <Project Path="src/BarberBoss.Exception/BarberBoss.Exception.csproj" Id="a21560df-ae56-47fb-a827-457950a2c7f2" />
     <Project Path="src/BarberBoss.Infrastructure/BarberBoss.Infrastructure.csproj" Id="6a12151a-d8dc-43d9-9203-353c30913b45" />
   </Folder>
   <Folder Name="/tests/" />

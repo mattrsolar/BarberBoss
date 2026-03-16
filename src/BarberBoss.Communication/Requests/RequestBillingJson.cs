@@ -8,7 +8,7 @@ namespace BarberBoss.Communication.Requests
         public string BarberName { get; set; }
         public string ClientName { get; set; }
         public string ServiceName { get; set; }
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         public Status Status { get; set; }
         public string Notes { get; set; } = string.Empty;

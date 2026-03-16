@@ -1,8 +1,8 @@
-﻿using BarberBoss.Domain.Enums;
+﻿using BarberBoss.Communication.Enums;
 
-namespace BarberBoss.Domain.Entities
+namespace BarberBoss.Communication.Responses
 {
-    public class Billing
+    public class ResponseBillingJson
     {
         public int Id { get; set; }
         public DateOnly Date { get; set; }

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\BarberBoss.Communication\BarberBoss.Communication.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

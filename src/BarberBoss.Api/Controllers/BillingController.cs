@@ -1,4 +1,5 @@
 ﻿using BarberBoss.Application.UseCases.Create;
+using BarberBoss.Application.UseCases.GetAll;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,20 @@ namespace BarberBoss.Api.Controllers
             var response = await useCase.Execute(request);
 
             return Created(string.Empty, response);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(ResponseGetAllBillingJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> GetAllBillingsAsync(
+            [FromServices] IGetAllBillingUseCase useCase)
+        {
+            var response = await useCase.Execute();
+
+            if (response.Billings.Count == 0)
+                return NoContent();
+
+            return Ok(response);
         }
     }
 }

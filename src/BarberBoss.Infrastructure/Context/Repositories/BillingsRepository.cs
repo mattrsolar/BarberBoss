@@ -1,9 +1,10 @@
 ﻿using BarberBoss.Domain.Entities;
 using BarberBoss.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BarberBoss.Infrastructure.Context.Repositories
 {
-    internal class BillingsRepository : IBillingsWriteOnlyRepository
+    internal class BillingsRepository : IBillingsWriteOnlyRepository, IBillingsReadOnlyRepository
     {
 
         private readonly BarberBossDbContext _dbContext;
@@ -16,6 +17,15 @@ namespace BarberBoss.Infrastructure.Context.Repositories
         public async Task Add(Billing billing)
         {
             await _dbContext.Billings.AddAsync(billing);
+        }
+
+        public async Task<List<Billing>> GetAll()
+        {
+            return await _dbContext.Billings
+                .AsNoTracking()
+                .OrderBy(x => x.Date)
+                .ToListAsync();
+
         }
     }
 }

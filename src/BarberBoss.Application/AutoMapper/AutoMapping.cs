@@ -23,6 +23,7 @@ namespace BarberBoss.Application.AutoMapper
         {
             CreateMap<Billing, ResponseCreateBillingJson>();
             CreateMap<Billing, ResponseBillingJson>();
+            CreateMap<Billing, ResponseShortGetAllBillingJson>();
 
         }
     }

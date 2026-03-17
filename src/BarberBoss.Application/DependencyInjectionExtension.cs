@@ -1,5 +1,6 @@
 ﻿using BarberBoss.Application.AutoMapper;
 using BarberBoss.Application.UseCases.Create;
+using BarberBoss.Application.UseCases.GetAll;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -24,6 +25,7 @@ namespace BarberBoss.Application
         public static void AddUseCases(this IServiceCollection services)
         {
             services.AddScoped<ICreateBillingUseCase, CreateBillingUseCase>();
+            services.AddScoped<IGetAllBillingUseCase, GetAllBillingUseCase>();
         }
     }
 }

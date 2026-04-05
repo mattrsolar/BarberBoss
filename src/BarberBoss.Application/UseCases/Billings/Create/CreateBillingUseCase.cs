@@ -4,7 +4,7 @@ using BarberBoss.Communication.Responses;
 using BarberBoss.Domain.Entities;
 using BarberBoss.Domain.Repositories;
 
-namespace BarberBoss.Application.UseCases.Create
+namespace BarberBoss.Application.UseCases.Billings.Create
 {
     public class CreateBillingUseCase : ICreateBillingUseCase
     {

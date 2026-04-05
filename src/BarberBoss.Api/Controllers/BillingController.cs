@@ -1,5 +1,5 @@
-﻿using BarberBoss.Application.UseCases.Create;
-using BarberBoss.Application.UseCases.GetAll;
+﻿using BarberBoss.Application.UseCases.Billings.Create;
+using BarberBoss.Application.UseCases.Billings.GetAll;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;

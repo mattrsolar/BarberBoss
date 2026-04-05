@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BarberBoss.Infrastructure.Context
 {
-    public class BarberBossDbContext : DbContext
+    internal class BarberBossDbContext : DbContext
     {
         public BarberBossDbContext(DbContextOptions<BarberBossDbContext> options) : base(options)
         {

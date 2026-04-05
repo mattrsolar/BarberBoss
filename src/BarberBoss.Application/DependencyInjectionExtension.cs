@@ -1,6 +1,7 @@
 ﻿using BarberBoss.Application.AutoMapper;
-using BarberBoss.Application.UseCases.Create;
-using BarberBoss.Application.UseCases.GetAll;
+using BarberBoss.Application.UseCases.Billings.Create;
+using BarberBoss.Application.UseCases.Billings.GetAll;
+using BarberBoss.Application.UseCases.User.Create;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -26,6 +27,7 @@ namespace BarberBoss.Application
         {
             services.AddScoped<ICreateBillingUseCase, CreateBillingUseCase>();
             services.AddScoped<IGetAllBillingUseCase, GetAllBillingUseCase>();
+            services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         }
     }
 }

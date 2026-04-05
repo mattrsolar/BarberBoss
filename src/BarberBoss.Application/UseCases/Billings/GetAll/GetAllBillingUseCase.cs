@@ -2,7 +2,7 @@
 using BarberBoss.Communication.Responses;
 using BarberBoss.Domain.Repositories;
 
-namespace BarberBoss.Application.UseCases.GetAll
+namespace BarberBoss.Application.UseCases.Billings.GetAll
 {
     public class GetAllBillingUseCase : IGetAllBillingUseCase
     {

@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BarberBoss.Infrastructure.Context.Repositories;
 using BarberBoss.Domain.Security.Cryptography;
+using BarberBoss.Domain.Repositories.User;
 
 namespace BarberBoss.Infrastructure
 {  
@@ -24,6 +25,7 @@ namespace BarberBoss.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBillingsWriteOnlyRepository, BillingsRepository>();
             services.AddScoped<IBillingsReadOnlyRepository, BillingsRepository>();
+            services.AddScoped<IUserReadOnlyRepository, UserRepository>();
 
         }
 

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
+using BarberBoss.Domain.Repositories.User;
 using BarberBoss.Domain.Security.Cryptography;
-using Microsoft.IdentityModel.Tokens.Experimental;
+using BarberBoss.Exception;
+using BarberBoss.Exception.ExecptionsBase;
 
 namespace BarberBoss.Application.UseCases.User.Create
 {
@@ -10,16 +12,21 @@ namespace BarberBoss.Application.UseCases.User.Create
     {
         private readonly IMapper _mapper;
         private readonly IPasswordEncripter _passwordEncripter;
+        private readonly IUserReadOnlyRepository _userReadOnlyRepository;
 
-        public RegisterUserUseCase(IMapper mapper, IPasswordEncripter passwordEncripter)
+        public RegisterUserUseCase(
+            IMapper mapper, 
+            IPasswordEncripter passwordEncripter, 
+            IUserReadOnlyRepository userReadOnlyRepository)
         {
             _mapper = mapper;
             _passwordEncripter = passwordEncripter;
+            _userReadOnlyRepository = userReadOnlyRepository;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
-            //Validate(request);
+            await Validate(request);
 
             var user = _mapper.Map<Domain.Entities.User>(request);
             user.Password = _passwordEncripter.Encrypt(request.Password);
@@ -30,9 +37,16 @@ namespace BarberBoss.Application.UseCases.User.Create
             };
         }
 
-        private void Validate(RequestRegisterUserJson request)
+        private async Task Validate(RequestRegisterUserJson request)
         {
             var result = new RegisterUserValidator().Validate(request);
+
+            var emailExists = await _userReadOnlyRepository.ExistActiveUserWithEmail(request.Email);
+
+            if (emailExists)
+            {
+                result.Error.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.EMAIL_ALREADY_REGISTERED));
+            }
 
             if (result.IsValid == false)
             {

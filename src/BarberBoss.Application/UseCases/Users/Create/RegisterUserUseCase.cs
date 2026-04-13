@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using BarberBoss.Application.UseCases.Users.Create;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using BarberBoss.Domain.Repositories.User;
 using BarberBoss.Domain.Security.Cryptography;
 using BarberBoss.Exception;
 using BarberBoss.Exception.ExecptionsBase;
+using FluentValidation.Results;
 
 namespace BarberBoss.Application.UseCases.User.Create
 {
@@ -45,7 +47,7 @@ namespace BarberBoss.Application.UseCases.User.Create
 
             if (emailExists)
             {
-                result.Error.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.EMAIL_ALREADY_REGISTERED));
+                result.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.EMAIL_ALREADY_REGISTERED));
             }
 
             if (result.IsValid == false)

@@ -5,6 +5,7 @@ using BarberBoss.Communication.Responses;
 using BarberBoss.Domain.Repositories;
 using BarberBoss.Domain.Repositories.User;
 using BarberBoss.Domain.Security.Cryptography;
+using BarberBoss.Domain.Security.Tokens;
 using BarberBoss.Exception;
 using BarberBoss.Exception.ExecptionsBase;
 using FluentValidation.Results;
@@ -18,6 +19,7 @@ namespace BarberBoss.Application.UseCases.User.Create
         private readonly IUserReadOnlyRepository _userReadOnlyRepository;
         private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IAccessTokenGenerator _tokenGenerator;
 
 
 
@@ -26,6 +28,7 @@ namespace BarberBoss.Application.UseCases.User.Create
             IPasswordEncripter passwordEncripter, 
             IUserReadOnlyRepository userReadOnlyRepository,
             IUserWriteOnlyRepository userWriteOnlyRepository,
+            IAccessTokenGenerator tokenGenerator,
             IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
@@ -33,6 +36,7 @@ namespace BarberBoss.Application.UseCases.User.Create
             _userReadOnlyRepository = userReadOnlyRepository;
             _userWriteOnlyRepository = userWriteOnlyRepository;
             _unitOfWork = unitOfWork;
+            _tokenGenerator = tokenGenerator;
 
         }
 
@@ -51,6 +55,7 @@ namespace BarberBoss.Application.UseCases.User.Create
             return new ResponseRegisteredUserJson
             {
                 Name = user.Name,
+                Token = _tokenGenerator.Generate(user)
             };
         }
 

@@ -5,7 +5,7 @@ namespace BarberBoss.Application.UseCases.User.Create
 {
     public interface IRegisterUserUseCase
     {
-        async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request);
+        public Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request);
 
     }
 }

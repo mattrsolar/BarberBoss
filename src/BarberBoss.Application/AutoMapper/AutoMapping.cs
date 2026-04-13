@@ -16,8 +16,8 @@ namespace BarberBoss.Application.AutoMapper
         private void RequestToEntity()
         {
             CreateMap<RequestBillingJson, Billing>();
-            CreateMap<RequestRegisterUserJson, User>();
-
+            CreateMap<RequestRegisterUserJson, User>()
+                .ForMember(dest => dest.Password, config => config.Ignore());
 
         }
 

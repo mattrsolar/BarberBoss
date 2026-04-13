@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using BarberBoss.Infrastructure.Context.Repositories;
+using BarberBoss.Domain.Security.Cryptography;
 
 namespace BarberBoss.Infrastructure
 {  
@@ -14,6 +15,8 @@ namespace BarberBoss.Infrastructure
         {
             AddDbContext(services, configuration);
             AddRepositories(services);
+
+            services.AddScoped<IPasswordEncripter, Security.BCrypt>();
         }
 
         private static void AddRepositories(IServiceCollection services)

@@ -22,5 +22,10 @@ namespace BarberBoss.Infrastructure.Context.Repositories
         {
             return await _dbContext.Users.AnyAsync(user => user.Email.Equals(email));
         }
+
+        public Task<User?> GetUserByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using BarberBoss.Application.UseCases.Users.Create;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
+using BarberBoss.Domain.Repositories;
 using BarberBoss.Domain.Repositories.User;
 using BarberBoss.Domain.Security.Cryptography;
 using BarberBoss.Exception;
@@ -15,15 +16,24 @@ namespace BarberBoss.Application.UseCases.User.Create
         private readonly IMapper _mapper;
         private readonly IPasswordEncripter _passwordEncripter;
         private readonly IUserReadOnlyRepository _userReadOnlyRepository;
+        private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
+        private readonly IUnitOfWork _unitOfWork;
+
+
 
         public RegisterUserUseCase(
             IMapper mapper, 
             IPasswordEncripter passwordEncripter, 
-            IUserReadOnlyRepository userReadOnlyRepository)
+            IUserReadOnlyRepository userReadOnlyRepository,
+            IUserWriteOnlyRepository userWriteOnlyRepository,
+            IUnitOfWork unitOfWork)
         {
             _mapper = mapper;
             _passwordEncripter = passwordEncripter;
             _userReadOnlyRepository = userReadOnlyRepository;
+            _userWriteOnlyRepository = userWriteOnlyRepository;
+            _unitOfWork = unitOfWork;
+
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
@@ -32,6 +42,11 @@ namespace BarberBoss.Application.UseCases.User.Create
 
             var user = _mapper.Map<Domain.Entities.User>(request);
             user.Password = _passwordEncripter.Encrypt(request.Password);
+            user.UserIdentifier = Guid.NewGuid();
+
+            await _userWriteOnlyRepository.Add(user);
+
+            await _unitOfWork.Commit();
 
             return new ResponseRegisteredUserJson
             {

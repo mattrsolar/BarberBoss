@@ -1,4 +1,5 @@
-﻿using BarberBoss.Communication.Requests;
+﻿using BarberBoss.Application.UseCases.User.Create;
+using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
 

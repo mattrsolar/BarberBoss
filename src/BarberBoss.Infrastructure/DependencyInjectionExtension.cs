@@ -26,6 +26,7 @@ namespace BarberBoss.Infrastructure
             services.AddScoped<IBillingsWriteOnlyRepository, BillingsRepository>();
             services.AddScoped<IBillingsReadOnlyRepository, BillingsRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+            services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
 
         }
 

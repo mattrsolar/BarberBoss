@@ -7,5 +7,8 @@
     <Project Path="src/BarberBoss.Exception/BarberBoss.Exception.csproj" Id="a21560df-ae56-47fb-a827-457950a2c7f2" />
     <Project Path="src/BarberBoss.Infrastructure/BarberBoss.Infrastructure.csproj" Id="6a12151a-d8dc-43d9-9203-353c30913b45" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/CommonTestUtilities/CommonTestUtilities.csproj" Id="92c8de38-3e84-4040-a113-51a9ba03f5e2" />
+    <Project Path="tests/Validators.Tests/Validators.Tests.csproj" Id="cbd88f84-e747-44f5-bd84-af2f45b3dd97" />
+  </Folder>
 </Solution>
